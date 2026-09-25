@@ -25,7 +25,7 @@ npm run preview
 
 Repositorio: https://github.com/leavalos/invite-weading
 
-El workflow `.github/workflows/deploy.yml` compila y publica en GitHub Pages con cada push a `main`. Requiere habilitar Pages con origen **GitHub Actions** en la configuración del repositorio y un plan compatible si el repositorio es privado.
+El workflow `.github/workflows/deploy.yml` compila con cada push a `main`. Para publicar en GitHub Pages, habilitar Pages con origen **GitHub Actions** y crear la variable de repositorio `ENABLE_GITHUB_PAGES=true`. Requiere un plan compatible si el repositorio es privado. El plan actual rechazó Pages para este repositorio privado, por lo que el paso de publicación queda desactivado hasta habilitarlo explícitamente.
 
 URL prevista: https://leavalos.github.io/invite-weading/
 
