@@ -1,5 +1,9 @@
 // Texts and destinations are kept together to make the next iterations easy.
 export const content = {
+  bankAccounts: [
+    { name: 'Lucas Emiliano Avalos', alias: 'leavalos12.mp', cvu: '0000003100076815984448' },
+    { name: 'Daniela Viviana Medina', alias: 'sasha.gino.mp', cvu: '0000003100093246454104' },
+  ],
   names: 'Daniela & Lucas',
   invitation: 'Los invitamos a nuestra boda',
   proposal: '13 de junio, Roma Italia',
@@ -23,8 +27,7 @@ export const content = {
   giftsDescription: 'El mejor regalo es compartir este día con ustedes, pero si desean colaborar con nuestro próximo destino y las aventuras que nos quedan por recorrer, pueden hacerlo aquí.',
   rsvpTitle: 'Confirma tu asistencia',
   rsvpDescription: 'Prepárate para disfrutar y celebrar con nosotros',
-  // Kept as published. This is later than the wedding date; confirm before launch.
-  rsvpDeadline: 'Confirmar asistencia antes del 20.12.27',
+  rsvpDeadline: 'Confirmar asistencia antes del 20.12.26',
   closingEyebrow: '7 maravillas 1 hogar y toda una vida por recorrer.',
   closingTitle: 'Gracias por ser parte de este día.',
   closingCaption: '¡Los esperamos!',
@@ -32,8 +35,6 @@ export const content = {
     maps: 'https://maps.app.goo.gl/Lp1mzxDHRbsYeF6ZA',
     spotify: 'https://open.spotify.com/playlist/1lAVaJByaEptjNBzEjBMW5?si=FtkoBzsMQi6oGLdBZJPPPw',
     album: 'https://photos.app.goo.gl/JkgNDXPtJgyp12Ru7',
-    gifts: 'https://docs.google.com/document/d/1TEVPGDCL-aahcCD64M6yWcAg8jxAhsG-_ENzOfdZOVM/edit?usp=sharing',
     rsvp: 'https://docs.google.com/forms/d/e/1FAIpQLSeHMdDLdd7we1D6Vrk04ecb19CdXfBU9w3XQI919XA7NQ_GsA/viewform?usp=header',
-    music: 'https://www.youtube-nocookie.com/embed/_QPDBY08Q0A?autoplay=1',
   },
 };

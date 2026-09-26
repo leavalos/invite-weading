@@ -33,26 +33,48 @@ section { overflow: hidden; }
 .button { display: inline-flex; align-items: center; justify-content: center; min-height: 66px; padding: 12px 32px; max-width: 100%; width: 404px; border-radius: 38px; background: var(--sage); color: var(--paper); font-size: 33.333px; line-height: 1.17; text-decoration: underline; text-underline-offset: 3px; transition: transform .2s, filter .2s; }
 .button:hover { transform: translateY(-3px); filter: brightness(.94); }
 .button-light { background: #e2dfcf; color: var(--sage); }
+button.button { border: 0; cursor: pointer; }
+body.modal-open { overflow: hidden; }
+.bank-dialog { width: min(560px, calc(100% - 32px)); max-height: calc(100dvh - 32px); padding: 0; border: 1px solid #68745e33; border-radius: 18px; background: var(--paper); color: var(--ink); box-shadow: 0 20px 80px #0003; }
+.bank-dialog::backdrop { background: #20281ccc; }
+.bank-dialog-content { position: relative; padding: 52px 32px 20px; }
+.bank-dialog h2 { font-size: clamp(24px, 6vw, 32px); letter-spacing: .1em; text-align: center; margin-bottom: 28px; }
+.bank-close { position: absolute; top: 8px; right: 10px; width: 44px; height: 44px; border: 0; border-radius: 50%; background: transparent; color: var(--sage); font-family: Arial, sans-serif; font-size: 30px; cursor: pointer; }
+.bank-close:hover { background: var(--cream); }
+.bank-account + .bank-account { border-top: 1px solid #68745e44; margin-top: 24px; padding-top: 24px; }
+.bank-account h3 { font-size: 25px; font-weight: 600; text-transform: none; letter-spacing: 0; }
+.bank-account dl { margin: 18px 0 0; font-family: 'Open Sans', Arial, sans-serif; }
+.bank-field + .bank-field { margin-top: 14px; }
+.bank-field dt { color: var(--sage); font-size: 12px; letter-spacing: .1em; margin-bottom: 4px; }
+.bank-field dd { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 0; }
+.bank-value { font-size: 15px; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; min-width: 0; user-select: text; }
+.bank-copy { flex-shrink: 0; min-height: 44px; padding: 8px 12px; border: 1px solid #68745e55; border-radius: 8px; background: var(--cream); color: var(--sage); font-size: 12px; cursor: pointer; }
+.bank-copy:hover { background: var(--sage); color: var(--paper); }
+.bank-copy-status { min-height: 36px; margin-top: 18px; font-family: 'Open Sans', Arial, sans-serif; font-size: 13px; line-height: 1.4; text-transform: none; letter-spacing: 0; color: var(--sage); }
+@media (max-width: 480px) {
+  .bank-dialog-content { padding-inline: 20px; }
+  .bank-field dd { flex-wrap: wrap; }
+  .bank-value { font-size: 14px; }
+}
 .skip-link { position: fixed; top: 12px; left: 12px; z-index: 10; padding: 12px; background: var(--paper); transform: translateY(-200%); }
 .skip-link:focus { transform: translateY(0); }
 
-.hero .section-inner { padding-top: 136px; }
+.hero .section-inner { padding-top: 76px; }
 .hero-eyebrow { font-size: 32px; margin-bottom: 20px; }
-.music-toggle { position: absolute; top: 27px; left: calc(50% - 32px); width: 64px; height: 64px; border: 2px solid #d3d5d3; color: #a8ad9f; border-radius: 50%; background: transparent; cursor: pointer; display: grid; place-items: center; }
-.music-toggle span { font-family: Arial, sans-serif; font-size: 25px; margin-left: 3px; }
-.music-toggle:hover { border-color: var(--sage); color: var(--sage); }
-#music-player { position: absolute; top: 102px; left: 50%; transform: translateX(-50%); z-index: 2; width: min(356px, 90vw); aspect-ratio: 16 / 9; background: var(--sage); box-shadow: 0 8px 30px #0002; }
-#music-player iframe { width: 100%; height: 100%; border: 0; }
+.background-music-toggle { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 5; min-height: 44px; padding: 10px 16px; border: 1px solid #68745e55; border-radius: 24px; background: var(--paper); color: var(--sage); box-shadow: 0 3px 15px #0001; font-size: 17px; cursor: pointer; }
+.background-music-toggle:hover { background: var(--cream); }
 #proposal-collage { width: min(887px, 100%); margin: 14px auto 31px; }
 .proposal-caption { font-family: 'Kudryashev Display', Georgia, serif; font-size: 13.333px; }
 
 .countdown-section .section-inner { padding-top: 111px; }
 .countdown-section h2 { color: var(--sage); }
-.countdown { display: flex; justify-content: center; gap: 42px; margin: 55px auto 33px; max-width: 760px; font-family: 'EB Garamond', Georgia, serif; color: var(--sage); }
-.countdown-unit { flex: 1; min-width: 0; }
-.countdown-value { display: block; font-size: 78px; font-variant-numeric: tabular-nums; line-height: 1.05; }
-.countdown-label { display: block; font-size: 20px; letter-spacing: .12em; margin-top: 15px; }
-.rings { width: 160px; height: 160px; margin-top: 50px; }
+.countdown { display: grid; grid-template-columns: minmax(150px, 1fr) auto minmax(150px, 1fr) auto minmax(150px, 1fr); align-items: start; column-gap: 22px; margin: 55px auto 33px; max-width: 780px; font-family: 'EB Garamond', Georgia, serif; color: var(--ink); }
+.countdown-unit { min-width: 0; }
+.countdown-value { display: block; font-size: 112px; font-variant-numeric: tabular-nums; line-height: .9; }
+.countdown-unit:last-child .countdown-value { color: var(--sage); }
+.countdown-label { display: block; font-size: 25px; font-weight: 700; letter-spacing: 0; margin-top: 25px; }
+.countdown-separator { align-self: start; font-size: 83px; line-height: .86; color: var(--ink); }
+.rings { display: block; width: 160px; height: 160px; margin: 50px auto 0; fill: none; stroke: var(--sage); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
 .countdown-caption { font-family: 'Kudryashev Display', Georgia, serif; max-width: 500px; margin: 27px auto 0; }
 
 .story .section-inner { padding-top: 103px; }
@@ -86,9 +108,11 @@ section { overflow: hidden; }
 .song h2 { font-size: 61.333px; }
 .section-copy { max-width: 850px; margin: 56px auto 0; }
 .song .section-copy { max-width: 810px; font-size: 33.333px; }
-.spotify-link { display: block; width: 375px; max-width: 75%; margin: 108px auto 0; transition: transform .2s; }
-.spotify-link:hover { transform: scale(1.03); }
-.song-caption { font-size: 33.333px; margin-top: 68px; }
+.spotify-player { width: 100%; max-width: 680px; margin: 44px auto 0; border-radius: 12px; overflow: hidden; background: #282828; }
+.spotify-player iframe { display: block; width: 100%; height: 352px; border: 0; }
+.spotify-link { display: inline-block; padding: 10px 8px; text-underline-offset: 4px; }
+.spotify-link:hover { text-decoration-thickness: 2px; }
+.song-caption { font-size: 33.333px; margin-top: 28px; }
 .album .section-inner { padding-top: 56px; }
 .album h2 { font-size: 56px; }
 .album .section-copy { max-width: 940px; margin-top: 51px; }
@@ -112,6 +136,13 @@ section { overflow: hidden; }
 .closing-photo { width: 278px; height: 417px; object-fit: cover; margin-top: 21px; }
 .closing-caption { font-family: 'EB Garamond', Georgia, serif; margin-top: 28px; }
 
+.motion-ready .scroll-reveal { opacity: 0; transition: opacity .8s ease, transform 1s cubic-bezier(.2,.7,.2,1); will-change: opacity, transform; }
+.motion-ready .scroll-reveal[data-reveal-direction="left"] { transform: translate3d(-70px, 28px, 0) rotate(-2deg); }
+.motion-ready .scroll-reveal[data-reveal-direction="right"] { transform: translate3d(70px, 28px, 0) rotate(2deg); }
+.motion-ready .scroll-reveal[data-reveal-direction="up"] { transform: translate3d(0, 65px, 0) scale(.96); }
+.motion-ready .scroll-reveal.is-visible { opacity: 1; transform: translate3d(0, 0, 0) rotate(0) scale(1); }
+#proposal-collage .scroll-reveal { transition-duration: 1.6s, 2s; }
+
 @media (min-width: 768px) and (max-width: 1100px) {
   .section-inner { padding-inline: 40px; }
   .story-arrow { width: 115px; left: 20px; top: 40px; }
@@ -125,16 +156,15 @@ section { overflow: hidden; }
   h2 { font-size: 34px; letter-spacing: .12em; }
   p { font-size: 19px; line-height: 1.4; letter-spacing: .11em; }
   .button { font-size: 22px; width: 300px; min-height: 55px; padding: 13px 20px; letter-spacing: .12em; }
-  .hero .section-inner { padding: 122px 15px 50px; }
+  .hero .section-inner { padding: 60px 15px 50px; }
   .hero-eyebrow { font-size: 19px; max-width: 320px; margin: 0 auto 16px; }
-  .music-toggle { width: 48px; height: 48px; top: 36px; left: calc(50% - 24px); }
-  .music-toggle span { font-size: 20px; }
   #proposal-collage { margin: 30px auto 28px; }
   .proposal-caption { font-size: 11px; }
   .countdown-section .section-inner { padding-top: 57px; }
-  .countdown { gap: 8px; margin: 40px auto 28px; }
-  .countdown-value { font-size: clamp(32px, 10.5vw, 65px); }
-  .countdown-label { font-size: 14px; letter-spacing: .02em; margin-top: 9px; }
+  .countdown { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr); gap: 5px; margin: 40px auto 28px; }
+  .countdown-value { font-size: clamp(48px, 16vw, 72px); }
+  .countdown-separator { font-size: clamp(38px, 13vw, 60px); }
+  .countdown-label { font-size: 15px; margin-top: 12px; }
   .rings { width: 125px; height: 125px; margin-top: 35px; }
   .countdown-caption { max-width: 290px; font-size: 20px; }
   .story .section-inner { padding: 69px 20px 55px; }
@@ -165,8 +195,8 @@ section { overflow: hidden; }
   .dress-note strong { display: block; margin: 0 0 10px; }
   .song h2, .album h2, .gifts h2 { font-size: 35px; }
   .section-copy, .song .section-copy { font-size: 22px; margin-top: 30px; max-width: 510px; }
-  .spotify-link { margin-top: 45px; width: 275px; }
-  .song-caption { font-size: 24px; margin-top: 38px; }
+  .spotify-player { margin-top: 32px; }
+  .song-caption { font-size: 24px; margin-top: 24px; }
   .album .section-inner, .gifts .section-inner { padding-top: 55px; }
   .album .section-copy { font-size: 20px; margin-top: 28px; }
   .camera { width: 160px; height: 133px; margin-top: 40px; }
@@ -188,4 +218,5 @@ section { overflow: hidden; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; }
+  .scroll-reveal { opacity: 1 !important; transform: none !important; animation: none !important; }
 }

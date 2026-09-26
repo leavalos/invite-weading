@@ -51,11 +51,11 @@ Para repetir la verificación de escritorio y celular, con el servidor de desarr
 - `src/design.json`: datos visuales importados para los collages y catálogo de recursos.
 - `public/_assets/`: imágenes y fuentes locales. Se pueden reemplazar por los originales de mejor resolución.
 
-Los enlaces a Google Maps, Spotify, Google Photos, datos bancarios y confirmación conservan los destinos de Canva. La canción de YouTube se carga solamente al pulsar reproducir. El contador es local y no depende de TickCounter. Los dibujos se muestran estáticos, sin las animaciones de entrada de Canva. Se corrigieron tildes en los textos y se adaptó el diseño a celular.
+Los enlaces a Google Maps, Spotify, Google Photos y confirmación conservan los destinos de Canva. Spotify tiene un reproductor integrado; los datos bancarios se muestran en un modal local. La música de fondo usa `public/audio/evergreen.mp3`, en bucle, e intenta empezar al abrir la página. Si el navegador bloquea el audio automático, se inicia con la primera interacción. El botón flotante permite pausarla y reanudarla. El contador es local y no depende de TickCounter. Fotos, collages e ilustraciones tienen transiciones al entrar en pantalla. Se corrigieron tildes en los textos y se adaptó el diseño a celular.
 
-## Dato pendiente de confirmar
+## Fechas
 
-El contador original indica **20 de febrero de 2027 a las 19:00 (UTC−03:00)**. El texto de confirmación dice **20.12.27**, fecha posterior al evento. Ambos datos se conservaron; confirmar el plazo correcto antes de publicar.
+La boda es el **20 de febrero de 2027 a las 19:00 (UTC−03:00)**. El plazo para confirmar asistencia es el **20 de diciembre de 2026**, corregido por indicación del usuario.
 
 ## Recuperación del diseño
 

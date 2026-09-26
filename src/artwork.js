@@ -16,7 +16,8 @@ function imageFill(fill) {
   return svgElement('image', { href: asset(ref.A.A), x: box.B, y: box.A, width: box.D, height: box.C, preserveAspectRatio: 'none' });
 }
 function draw(element) {
-  const g = svgElement('g', { transform: `translate(${element.B} ${element.A}) rotate(${element.E || 0} ${element.D / 2} ${element.C / 2})` });
+  // Canva stores transparency (0 = opaque), not opacity. Preserve it on frames.
+  const g = svgElement('g', { transform: `translate(${element.B} ${element.A}) rotate(${element.E || 0} ${element.D / 2} ${element.C / 2})`, opacity: 1 - (element.F || 0) });
   if (element['A?'] === 'H') {
     const children = svgElement('g', { transform: `scale(${element.D / element.b} ${element.C / element.a})` });
     for (const child of element.c) children.append(draw(child));
