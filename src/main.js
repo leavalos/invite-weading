@@ -13,8 +13,8 @@ const spotifyEmbedUrl = `https://open.spotify.com/embed${new URL(c.links.spotify
 document.querySelector('#app').innerHTML = `
   <section class="hero paper" aria-labelledby="names">
     <div class="section-inner">
-      <p class="hero-eyebrow">${escape(c.invitation)}</p>
       <h1 id="names">${escape(c.names)}</h1>
+      <p class="hero-eyebrow">${escape(c.invitation)}</p>
       <div id="proposal-collage"></div>
       <p class="proposal-caption">${escape(c.proposal)}</p>
     </div>
@@ -68,7 +68,7 @@ document.querySelector('#app').innerHTML = `
       <div class="spotify-player">
         <iframe src="${escape(spotifyEmbedUrl)}" title="Playlist de nuestra boda en Spotify" width="100%" height="352" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>
       </div>
-      <p class="song-caption">${link(c.links.spotify, 'Mandale play', 'spotify-link')}</p>
+      <p class="song-caption">${link(c.links.spotify, 'Suma tu temaiken', 'spotify-link')}</p>
     </div>
   </section>
   <section class="album paper" aria-labelledby="album-title">

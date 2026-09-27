@@ -35,7 +35,7 @@ function doPost(e) {
     function validText(value, limit) { return typeof value === 'string' && value.trim().length > 0 && value.length <= limit; }
     if (!validText(data.name, 100) || typeof data.attending !== 'boolean' || !Array.isArray(data.names) || data.names.length < 1 || data.names.length > 20 || !data.names.every(name => validText(name, 100)) || typeof data.diet !== 'string' || data.diet.length > 1000) throw new Error('Invalid fields');
     const names = data.names.map(name => name.trim());
-    if (names[0] !== data.name.trim() || new Set(names.map(name => name.toLowerCase())).size !== names.length || (!data.attending && names.length !== 1)) throw new Error('Invalid names');
+    if (names[0] !== data.name.trim() || new Set(names.map(name => name.toLowerCase())).size !== names.length) throw new Error('Invalid names');
     lock.waitLock(20000);
     const sheet = setup();
     // Idempotent retries: a timeout never produces a second copy of the same request.

@@ -38,8 +38,9 @@ assert.equal(send(payload).ok, true);
 assert.equal(rows.length, 2, 'retry must not duplicate');
 assert.equal(send({ ...payload, names: ['=Ana', '=Ana'] }).ok, false);
 assert.equal(send({ ...payload, attending: 'yes' }).ok, false);
-assert.equal(send({ name: 'Luis', attending: false, names: ['Luis'], diet: '' }, '22345678-1234-1234-1234-123456789abc').ok, true);
+assert.equal(send({ name: 'Luis', attending: false, names: ['Luis', 'María'], diet: '' }, '22345678-1234-1234-1234-123456789abc').ok, true);
 assert.equal(rows[2][4], 0);
+assert.equal(rows[2][5], 'Luis\nMaría');
 console.log('Apps Script: validation, totals, formula escaping and retry deduplication passed (mock Sheets).');
 
 const endpoint = 'https://script.google.com/macros/s/local-test/exec';
@@ -93,9 +94,12 @@ try {
   await page.getByLabel('Sí, voy a asistir', { exact: true }).check();
   await page.locator('#add-companion').click();
   await page.getByLabel('No podré asistir', { exact: true }).check();
+  await page.getByLabel('Nombre y apellido de la otra persona').fill('María');
+  assert.match(await page.locator('#rsvp-summary').textContent(), /2 personas no podrán asistir: Luis, María/);
+  assert.equal(await page.locator('#rsvp-diet').isVisible(), false);
   await page.getByRole('button', { name: 'Guardar respuesta', exact: true }).click();
   await page.waitForFunction(() => document.querySelector('#rsvp-status').textContent.startsWith('Gracias'));
-  assert.deepEqual(JSON.parse(requests.at(-1).payload).names, ['Luis']);
+  assert.deepEqual(JSON.parse(requests.at(-1).payload).names, ['Luis', 'María']);
   assert.equal(JSON.parse(requests.at(-1).payload).attending, false);
   assert.deepEqual(errors, []);
   console.log('RSVP desktop/mobile: family totals, decline, focus, overflow, failure recovery and acknowledged save passed (mock endpoint).');

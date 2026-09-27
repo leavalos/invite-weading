@@ -22,12 +22,14 @@ export function installRsvp() {
             <label><input type="radio" name="attending" value="no" required> No podré asistir</label>
           </fieldset>
           <div id="rsvp-companions" hidden>
-            <p>¿Quién más viene con vos?</p>
-            <p class="rsvp-help">Agregá solo a las personas incluidas en tu invitación. Si venís solo/a, no hace falta agregar a nadie.</p>
+            <p id="companions-heading">¿Quién más viene con vos?</p>
+            <p class="rsvp-help">Agregá solo a las personas incluidas en tu invitación que tienen la misma respuesta que vos. Si respondés solo por vos, no hace falta agregar a nadie.</p>
             <div id="companion-list"></div>
             <button class="rsvp-secondary" id="add-companion" type="button">+ Agregar persona</button>
-            <label for="guest-diet">¿Alguien necesita un menú especial? (opcional)</label>
-            <textarea id="guest-diet" name="diet" rows="3" maxlength="1000" placeholder="Por ejemplo: Ana es celíaca"></textarea>
+            <div id="rsvp-diet">
+              <label for="guest-diet">¿Alguien necesita un menú especial? (opcional)</label>
+              <textarea id="guest-diet" name="diet" rows="3" maxlength="1000" placeholder="Por ejemplo: Ana es celíaca"></textarea>
+            </div>
           </div>
           <p id="rsvp-summary" aria-live="polite"></p>
           <button class="rsvp-submit" type="submit">Guardar respuesta</button>
@@ -54,12 +56,16 @@ export function installRsvp() {
   const attending = () => form.elements.attending.value === 'yes';
   const names = () => [name.value.trim(), ...[...list.querySelectorAll('input')].map(input => input.value.trim())].filter(Boolean);
   function update() {
-    companions.hidden = !attending();
-    companions.querySelectorAll('input, textarea, button').forEach(el => { el.disabled = !attending(); });
-    add.disabled = !attending() || list.children.length >= 19;
+    const answered = Boolean(form.elements.attending.value);
+    companions.hidden = !answered;
+    companions.querySelectorAll('input, button').forEach(el => { el.disabled = !answered; });
+    dialog.querySelector('#companions-heading').textContent = attending() ? '¿Quién más viene con vos?' : '¿Quién más no podrá asistir?';
+    dialog.querySelector('#rsvp-diet').hidden = !attending();
+    form.elements.diet.disabled = !attending();
+    add.disabled = !answered || list.children.length >= 19;
     summary.textContent = attending()
       ? `Estás confirmando a ${names().length} ${names().length === 1 ? 'persona' : 'personas'}: ${names().join(', ')}.`
-      : form.elements.attending.value === 'no' ? 'Guardaremos que no podrás asistir.' : '';
+      : answered ? `Guardaremos que ${names().length} ${names().length === 1 ? 'persona no podrá' : 'personas no podrán'} asistir: ${names().join(', ')}.` : '';
   }
   open.addEventListener('click', () => {
     dialog.showModal();
@@ -87,11 +93,11 @@ export function installRsvp() {
     event.preventDefault();
     if (pending) return;
     status.textContent = '';
-    if (!name.value.trim() || (attending() && [...list.querySelectorAll('input')].some(input => !input.value.trim()))) {
+    if (!name.value.trim() || [...list.querySelectorAll('input')].some(input => !input.value.trim())) {
       status.textContent = 'Completá el nombre de cada persona o quitá los campos vacíos.';
       return;
     }
-    const guestNames = attending() ? names() : [name.value.trim()];
+    const guestNames = names();
     if (new Set(guestNames.map(value => value.toLocaleLowerCase())).size !== guestNames.length) {
       status.textContent = 'Hay un nombre repetido. Revisá la lista antes de confirmar.';
       return;
@@ -117,7 +123,7 @@ export function installRsvp() {
       form.hidden = true;
       status.textContent = attending()
         ? `¡Listo! Confirmaste a ${guestNames.length} ${guestNames.length === 1 ? 'persona' : 'personas'}: ${guestNames.join(', ')}. ¡Los esperamos!`
-        : 'Gracias por avisarnos. Guardamos que no podrás asistir.';
+        : `Gracias por avisarnos. Guardamos que ${guestNames.length} ${guestNames.length === 1 ? 'persona no podrá' : 'personas no podrán'} asistir: ${guestNames.join(', ')}.`;
       status.focus();
     } catch {
       status.textContent = 'No pudimos verificar el guardado. Tus datos siguen acá: podés volver a intentar o comunicarte con Daniela o Lucas. Reintentar esta misma respuesta no la duplica.';

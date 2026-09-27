@@ -60,7 +60,7 @@ body.modal-open { overflow: hidden; }
 .skip-link:focus { transform: translateY(0); }
 
 .hero .section-inner { padding-top: 76px; }
-.hero-eyebrow { font-size: 32px; margin-bottom: 20px; }
+.hero-eyebrow { font-size: 24px; margin-bottom: 20px; }
 .background-music-toggle { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 5; min-height: 44px; padding: 10px 16px; border: 1px solid #68745e55; border-radius: 24px; background: var(--paper); color: var(--sage); box-shadow: 0 3px 15px #0001; font-size: 17px; cursor: pointer; }
 .background-music-toggle:hover { background: var(--cream); }
 #proposal-collage { width: min(887px, 100%); margin: 14px auto 31px; }
@@ -157,7 +157,7 @@ body.modal-open { overflow: hidden; }
   p { font-size: 19px; line-height: 1.4; letter-spacing: .11em; }
   .button { font-size: 22px; width: 300px; min-height: 55px; padding: 13px 20px; letter-spacing: .12em; }
   .hero .section-inner { padding: 60px 15px 50px; }
-  .hero-eyebrow { font-size: 19px; max-width: 320px; margin: 0 auto 16px; }
+  .hero-eyebrow { font-size: 16px; max-width: 320px; margin: 0 auto 16px; }
   #proposal-collage { margin: 30px auto 28px; }
   .proposal-caption { font-size: 11px; }
   .countdown-section .section-inner { padding-top: 57px; }
