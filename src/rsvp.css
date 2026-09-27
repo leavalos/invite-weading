@@ -1,0 +1,23 @@
+.rsvp-dialog { width: min(600px, calc(100% - 24px)); }
+.rsvp-dialog p, .rsvp-dialog label, .rsvp-dialog legend, .rsvp-dialog button:not(.bank-close), .rsvp-dialog input, .rsvp-dialog textarea { font-family: Arial, sans-serif; font-size: 17px; line-height: 1.5; letter-spacing: 0; text-transform: none; }
+.rsvp-dialog h2 { margin-bottom: 16px; }
+.rsvp-dialog .rsvp-intro { margin-bottom: 24px; }
+.rsvp-dialog fieldset { min-width: 0; border: 0; padding: 0; margin: 0; }
+.rsvp-dialog label { display: block; margin-bottom: 7px; }
+.rsvp-dialog input:not([type="radio"]), .rsvp-dialog textarea { width: 100%; min-height: 48px; padding: 10px 12px; border: 1px solid #68745e88; border-radius: 8px; background: white; color: var(--ink); }
+.rsvp-dialog textarea { resize: vertical; }
+.rsvp-dialog input:focus-visible, .rsvp-dialog textarea:focus-visible { outline: 3px solid var(--sage); outline-offset: 2px; }
+.rsvp-dialog .rsvp-attendance { margin: 24px 0; }
+.rsvp-attendance legend { margin-bottom: 10px; }
+.rsvp-attendance label { display: flex; align-items: center; gap: 12px; min-height: 50px; padding: 10px; border: 1px solid #68745e55; border-radius: 8px; cursor: pointer; }
+.rsvp-attendance input { width: 22px; height: 22px; accent-color: var(--sage); }
+.rsvp-dialog .rsvp-help { font-size: 15px; margin: 8px 0 18px; }
+.companion-row { margin-bottom: 16px; }
+.companion-row > div { display: flex; gap: 8px; }
+.companion-row input { min-width: 0; }
+.rsvp-secondary { min-height: 48px; padding: 8px 12px; border: 1px solid var(--sage); border-radius: 8px; background: var(--cream); color: var(--ink); cursor: pointer; }
+#add-companion { margin-bottom: 24px; }
+#rsvp-summary:not(:empty) { padding: 16px; margin: 20px 0; border-radius: 8px; background: var(--cream); overflow-wrap: anywhere; }
+.rsvp-submit { width: 100%; min-height: 52px; padding: 12px; border: 0; border-radius: 26px; background: var(--sage); color: white; cursor: pointer; }
+.rsvp-dialog :disabled { opacity: .65; cursor: wait; }
+#rsvp-status:not(:empty) { margin-top: 20px; overflow-wrap: anywhere; }

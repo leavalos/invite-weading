@@ -53,7 +53,13 @@ Para repetir la verificación de escritorio y celular, con el servidor de desarr
 
 Los enlaces a Google Maps, Spotify, Google Photos y confirmación conservan los destinos de Canva. Spotify tiene un reproductor integrado; los datos bancarios se muestran en un modal local. La música de fondo usa `public/audio/evergreen.mp3`, en bucle, e intenta empezar al abrir la página. Si el navegador bloquea el audio automático, se inicia con la primera interacción. El botón flotante permite pausarla y reanudarla. El contador es local y no depende de TickCounter. Fotos, collages e ilustraciones tienen transiciones al entrar en pantalla. Se corrigieron tildes en los textos y se adaptó el diseño a celular.
 
-## Fechas
+## Confirmación en la página
+
+El botón de asistencia abre un modal accesible con nombres, asistencia y menú especial. La integración a Sheets está preparada pero requiere desplegar y autorizar el script: [instrucciones de conexión](google-apps-script/README.md). Sin `VITE_RSVP_ENDPOINT`, el modal informa que el envío todavía no está habilitado; no guarda ni simula respuestas exitosas.
+
+`node scripts/check-rsvp.mjs` verifica el formulario y el script con servicios simulados, sin escribir datos en Google. La comprobación real queda pendiente de la autorización y URL `/exec`.
+
+## Fechas del evento
 
 La boda es el **20 de febrero de 2027 a las 19:00 (UTC−03:00)**. El plazo para confirmar asistencia es el **20 de diciembre de 2026**, corregido por indicación del usuario.
 

@@ -36,7 +36,7 @@ try {
     assert.deepEqual(imageFailures, [], `${name}: broken images`);
     const svgUrls = await page.locator('svg image').evaluateAll(images => [...new Set(images.map(img => img.getAttribute('href')))]);
     for (const url of svgUrls) assert.equal((await page.request.get(new URL(url, siteUrl).href)).status(), 200, url);
-    for (const key of ['maps', 'spotify', 'album', 'rsvp']) {
+    for (const key of ['maps', 'spotify', 'album']) {
       assert.equal(await page.locator(`a[href="${content.links[key]}"]`).count(), 1, `${key}: link missing`);
     }
     assert.match(await page.locator('[data-time="0"]').textContent(), /^\d+$/);

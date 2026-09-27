@@ -3,6 +3,7 @@ import { content as c } from './content';
 import { asset, collage, installFonts } from './artwork';
 import { installBackgroundMusic } from './music';
 import { installScrollReveals } from './scroll-reveal';
+import { installRsvp } from './rsvp';
 
 installFonts();
 const escape = value => String(value).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
@@ -91,7 +92,7 @@ document.querySelector('#app').innerHTML = `
       <div id="calendar-collage"></div>
       <h2 id="rsvp-title">${escape(c.rsvpTitle)}</h2>
       <p class="section-copy">${escape(c.rsvpDescription)}</p>
-      ${link(c.links.rsvp, 'Confirma aquí', 'button button-light')}
+      <button class="button button-light" id="rsvp-open" type="button" aria-haspopup="dialog" aria-controls="rsvp-dialog">Confirma aquí</button>
       <p class="rsvp-deadline">${escape(c.rsvpDeadline)}</p>
     </div>
   </section>
@@ -174,6 +175,7 @@ updateCountdown();
 setInterval(updateCountdown, 1000);
 
 installBackgroundMusic();
+installRsvp();
 
 // Preserve the recoloring used in the original Canva illustrations.
 for (const [selector, replacements] of [
