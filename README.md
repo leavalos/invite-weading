@@ -51,7 +51,7 @@ Para repetir la verificación de escritorio y celular, con el servidor de desarr
 - `src/design.json`: datos visuales importados para los collages y catálogo de recursos.
 - `public/_assets/`: imágenes y fuentes locales. Se pueden reemplazar por los originales de mejor resolución.
 
-Los enlaces a Google Maps, Spotify, Google Photos y confirmación conservan los destinos de Canva. Spotify tiene un reproductor integrado; los datos bancarios se muestran en un modal local. La música de fondo usa `public/audio/evergreen.mp3`, en bucle, e intenta empezar al abrir la página. Si el navegador bloquea el audio automático, se inicia con la primera interacción. El botón flotante permite pausarla y reanudarla. El contador es local y no depende de TickCounter. Fotos, collages e ilustraciones tienen transiciones al entrar en pantalla. Se corrigieron tildes en los textos y se adaptó el diseño a celular.
+Los enlaces a Google Maps, Spotify, Google Photos y confirmación conservan los destinos de Canva. Spotify tiene un reproductor integrado; los datos bancarios se muestran en un modal local. La música de fondo usa `public/audio/evergreen.mp3`, en bucle. Una portada ofrece «Abrir invitación con música», que inicia el audio directamente con ese clic o toque, y «Entrar sin música». El botón flotante permite activarla, pausarla y reanudarla. Los scrolls y clics sobre el contenido no cambian la elección del visitante. El contador es local y no depende de TickCounter. Fotos, collages e ilustraciones tienen transiciones al entrar en pantalla. Se corrigieron tildes en los textos y se adaptó el diseño a celular.
 
 ## Confirmación en la página
 
