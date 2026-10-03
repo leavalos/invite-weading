@@ -1,5 +1,3 @@
-import { content } from './content';
-
 export function installBackgroundMusic() {
   const audio = document.createElement('audio');
   audio.id = 'background-music';
@@ -38,25 +36,21 @@ export function installBackgroundMusic() {
 
   const cover = document.createElement('dialog');
   cover.className = 'invitation-cover';
-  cover.setAttribute('aria-labelledby', 'invitation-cover-title');
+  cover.setAttribute('aria-label', 'Invitación de Daniela y Lucas');
   cover.innerHTML = `
     <div class="invitation-cover-content">
-      <span class="invitation-cover-monogram" aria-hidden="true">D & L</span>
-      <p class="invitation-cover-eyebrow">Nos casamos</p>
-      <h2 id="invitation-cover-title"></h2>
+      <div class="invitation-cover-logo">
+        <img src="${import.meta.env.BASE_URL}wedding-logo.png" alt="Logo de Lucas y Daniela" width="2000" height="2000">
+      </div>
       <p class="invitation-cover-date">20 · 02 · 2027</p>
-      <span class="invitation-cover-divider" aria-hidden="true"></span>
-      <p class="invitation-cover-message">Una nueva historia comienza.<br>Queremos compartirla con vos.</p>
-      <button class="button invitation-cover-open" type="button" autofocus>Abrir invitación con música</button>
-      <button class="invitation-cover-silent" type="button">Entrar sin música</button>
+      <button class="button invitation-cover-open" type="button" autofocus>Abrir invitación</button>
     </div>`;
-  cover.querySelector('h2').textContent = content.names;
   cover.querySelector('.invitation-cover-open').addEventListener('click', () => {
     // Call play directly within the click, before any asynchronous work.
     void play();
     cover.close();
   });
-  cover.querySelector('.invitation-cover-silent').addEventListener('click', () => cover.close());
+  cover.addEventListener('cancel', event => event.preventDefault());
   cover.addEventListener('close', () => {
     document.body.classList.remove('invitation-closed');
     toggle.hidden = false;

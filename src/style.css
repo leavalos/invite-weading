@@ -64,17 +64,14 @@ body.modal-open { overflow: hidden; }
 .background-music-toggle { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 5; min-height: 44px; padding: 10px 16px; border: 1px solid #68745e55; border-radius: 24px; background: var(--paper); color: var(--sage); box-shadow: 0 3px 15px #0001; font-size: 17px; cursor: pointer; }
 .background-music-toggle:hover { background: var(--cream); }
 body.invitation-closed { overflow: hidden; }
-.invitation-cover { position: fixed; inset: 0; width: 100%; max-width: none; height: 100%; max-height: none; margin: 0; padding: 32px 20px; border: 0; color: var(--sage); background: radial-gradient(ellipse at center, var(--paper) 25%, var(--cream) 100%); overflow-y: auto; }
+.invitation-cover { position: fixed; inset: 0; width: 100%; max-width: none; height: 100%; max-height: none; margin: 0; padding: 32px 20px; border: 0; color: var(--sage); background: var(--paper); overflow-y: auto; }
 .invitation-cover::backdrop { background: var(--paper); }
 .invitation-cover-content { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100%; max-width: 660px; margin: auto; text-align: center; }
-.invitation-cover-monogram { display: grid; place-items: center; width: 112px; height: 112px; border: 1px solid #68745e66; border-radius: 50%; font-family: 'EB Garamond', Georgia, serif; font-size: 36px; margin-bottom: 36px; }
-.invitation-cover-eyebrow { font-size: 17px; margin-bottom: 16px; }
-.invitation-cover h2 { font-size: clamp(30px, 7vw, 52px); letter-spacing: .08em; }
-.invitation-cover-date { font-size: 21px; margin-top: 20px; }
-.invitation-cover-divider { width: 56px; height: 1px; background: #68745e66; margin: 30px 0; }
-.invitation-cover-message { font-size: clamp(18px, 4vw, 23px); line-height: 1.5; text-transform: none; letter-spacing: .025em; }
+.invitation-cover-logo { position: relative; flex-shrink: 0; width: clamp(180px, 55vw, 260px); aspect-ratio: 1; overflow: hidden; border-radius: 50%; }
+/* Display just the central logo from the original artwork. */
+.invitation-cover-logo img { position: absolute; width: 238.095%; height: auto; max-width: none; left: -69.0476%; top: -69.0476%; }
+.invitation-cover-date { font-size: 21px; margin-top: 32px; }
 .invitation-cover-open { width: auto; margin-top: 36px; font-size: clamp(16px, 4vw, 21px); letter-spacing: .04em; text-transform: none; text-decoration: none; min-height: 56px; padding: 16px 24px; }
-.invitation-cover-silent { margin-top: 16px; min-height: 44px; padding: 8px 16px; border: 0; background: transparent; color: var(--sage); text-decoration: underline; text-underline-offset: 4px; font-size: 17px; cursor: pointer; }
 #proposal-collage { width: min(887px, 100%); margin: 14px auto 31px; }
 .proposal-caption { font-family: 'Kudryashev Display', Georgia, serif; font-size: 13.333px; }
 

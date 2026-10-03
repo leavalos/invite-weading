@@ -68,7 +68,7 @@ try {
   for (const width of [1366, 390, 320]) {
     await page.setViewportSize({ width, height: 850 });
     await page.goto('http://127.0.0.1:5175');
-    await page.getByRole('button', { name: 'Entrar sin música', exact: true }).click();
+    await page.getByRole('button', { name: 'Abrir invitación', exact: true }).click();
     await page.locator('#rsvp-open').click();
     const dialog = page.locator('#rsvp-dialog');
     await page.getByLabel('Tu nombre y apellido').fill('Ana Pérez');
@@ -90,7 +90,7 @@ try {
     assert.equal(await page.locator('#rsvp-open').evaluate(el => el === document.activeElement), true);
   }
   await page.reload();
-  await page.getByRole('button', { name: 'Entrar sin música', exact: true }).click();
+  await page.getByRole('button', { name: 'Abrir invitación', exact: true }).click();
   await page.locator('#rsvp-open').click();
   await page.getByLabel('Tu nombre y apellido').fill('Luis');
   await page.getByLabel('Sí, voy a asistir', { exact: true }).check();

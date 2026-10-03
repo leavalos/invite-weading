@@ -20,12 +20,12 @@ try {
     await page.setViewportSize({ width, height });
     await page.goto(siteUrl, { waitUntil: 'networkidle' });
     await page.evaluate(() => document.fonts.ready);
-    const cover = page.getByRole('dialog', { name: content.names });
+    const cover = page.getByRole('dialog', { name: 'Invitación de Daniela y Lucas' });
     assert.equal(await cover.isVisible(), true);
     assert.equal(await page.locator('#background-music').evaluate(el => el.paused), true, 'Music waits for the opening button');
     assert.equal(await cover.evaluate(el => el.scrollWidth > el.clientWidth), false, `${name}: cover overflow`);
     await page.screenshot({ path: `artifacts/cover-${name}.png` });
-    await page.getByRole('button', { name: 'Abrir invitación con música', exact: true }).click();
+    await page.getByRole('button', { name: 'Abrir invitación', exact: true }).click();
     await page.waitForFunction(() => !document.querySelector('#background-music').paused);
     assert.equal(await cover.count(), 0);
     await page.locator('.closing-caption').scrollIntoViewIfNeeded();
@@ -88,12 +88,6 @@ try {
   assert.equal(await page.locator('#background-music').evaluate(el => el.paused), true, 'Scrolling must preserve a manual pause');
   await page.locator('h1').click();
   assert.equal(await page.locator('#background-music').evaluate(el => el.paused), true);
-  await page.getByRole('button', { name: 'Activar música de fondo' }).click();
-  await page.waitForFunction(() => !document.querySelector('#background-music').paused);
-  await page.reload({ waitUntil: 'networkidle' });
-  await page.getByRole('button', { name: 'Entrar sin música', exact: true }).click();
-  await page.locator('h1').click();
-  assert.equal(await page.locator('#background-music').evaluate(el => el.paused), true, 'Silent entry stays silent after a click');
   await page.getByRole('button', { name: 'Activar música de fondo' }).click();
   await page.waitForFunction(() => !document.querySelector('#background-music').paused);
   await page.clock.install({ time: new Date('2027-02-21T00:00:00-03:00') });
