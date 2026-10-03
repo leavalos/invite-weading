@@ -70,7 +70,6 @@ body.invitation-closed { overflow: hidden; }
 .invitation-cover-logo { position: relative; flex-shrink: 0; width: clamp(180px, 55vw, 260px); aspect-ratio: 1; overflow: hidden; border-radius: 50%; }
 /* Display just the central logo from the original artwork. */
 .invitation-cover-logo img { position: absolute; width: 238.095%; height: auto; max-width: none; left: -69.0476%; top: -69.0476%; }
-.invitation-cover-date { font-size: 21px; margin-top: 32px; }
 .invitation-cover-open { width: auto; margin-top: 36px; font-size: clamp(16px, 4vw, 21px); letter-spacing: .04em; text-transform: none; text-decoration: none; min-height: 56px; padding: 16px 24px; }
 #proposal-collage { width: min(887px, 100%); margin: 14px auto 31px; }
 .proposal-caption { font-family: 'Kudryashev Display', Georgia, serif; font-size: 13.333px; }

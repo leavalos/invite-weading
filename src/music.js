@@ -42,7 +42,6 @@ export function installBackgroundMusic() {
       <div class="invitation-cover-logo">
         <img src="${import.meta.env.BASE_URL}wedding-logo.png" alt="Logo de Lucas y Daniela" width="2000" height="2000">
       </div>
-      <p class="invitation-cover-date">20 · 02 · 2027</p>
       <button class="button invitation-cover-open" type="button" autofocus>Abrir invitación</button>
     </div>`;
   cover.querySelector('.invitation-cover-open').addEventListener('click', () => {
