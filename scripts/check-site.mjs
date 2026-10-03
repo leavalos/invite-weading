@@ -28,6 +28,8 @@ try {
     await page.getByRole('button', { name: 'Abrir invitación', exact: true }).click();
     await page.waitForFunction(() => !document.querySelector('#background-music').paused);
     assert.equal(await cover.count(), 0);
+    assert.equal(await page.locator('#names').evaluate(node => node === document.activeElement), false, `${name}: opening must not focus the title`);
+    assert.equal(await page.locator('#names').getAttribute('tabindex'), null, `${name}: title must not be a focus target`);
     assert.equal(await page.locator('#names').evaluate(node => getComputedStyle(node).outlineStyle), 'none', `${name}: opening must not draw a focus border around the title`);
     await page.locator('.closing-caption').scrollIntoViewIfNeeded();
     await page.locator('.closing-photo').evaluate(img => img.decode());

@@ -54,9 +54,6 @@ export function installBackgroundMusic() {
   cover.addEventListener('close', () => {
     document.body.classList.remove('invitation-closed');
     toggle.hidden = false;
-    const heading = document.querySelector('#names');
-    heading.setAttribute('tabindex', '-1');
-    heading.focus({ preventScroll: true });
     cover.remove();
   });
   document.body.append(cover);
