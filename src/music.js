@@ -1,7 +1,7 @@
 export function installBackgroundMusic() {
   const audio = document.createElement('audio');
   audio.id = 'background-music';
-  audio.src = `${import.meta.env.BASE_URL}audio/evergreen.mp3`;
+  audio.src = `${import.meta.env.BASE_URL}audio/lets-get-married.mp3`;
   audio.loop = true;
   audio.preload = 'metadata';
   audio.volume = 0.45;
