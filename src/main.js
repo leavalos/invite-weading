@@ -111,8 +111,10 @@ bankDialog.className = 'bank-dialog';
 bankDialog.setAttribute('aria-labelledby', 'bank-details-title');
 bankDialog.innerHTML = `
   <div class="bank-dialog-content">
-    <button class="bank-close" type="button" aria-label="Cerrar datos bancarios" autofocus>×</button>
-    <h2 id="bank-details-title">Datos bancarios</h2>
+    <header class="bank-dialog-header">
+      <button class="bank-close" type="button" aria-label="Cerrar datos bancarios" autofocus>×</button>
+      <h2 id="bank-details-title">Datos bancarios</h2>
+    </header>
     ${c.bankAccounts.map(account => `
       <section class="bank-account" aria-label="Cuenta de ${escape(account.name)}">
         <h3>${escape(account.name)}</h3>

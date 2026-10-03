@@ -12,6 +12,7 @@ export function installBackgroundMusic() {
   toggle.hidden = true;
   toggle.setAttribute('aria-controls', audio.id);
   function updateControl() {
+    toggle.dataset.symbol = audio.paused ? '♪' : 'Ⅱ';
     toggle.textContent = audio.paused ? '♪ Activar música' : 'Ⅱ Pausar música';
     toggle.setAttribute('aria-label', audio.paused ? 'Activar música de fondo' : 'Pausar música de fondo');
   }

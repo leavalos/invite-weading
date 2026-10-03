@@ -16,7 +16,7 @@ try {
     const url = new URL(route.request().url());
     return url.origin === siteOrigin || url.protocol === 'data:' ? route.continue() : route.abort();
   });
-  for (const [name, width, height] of [['desktop', 1366, 900], ['mobile', 390, 844], ['small-mobile', 320, 700]]) {
+  for (const [name, width, height] of [['desktop', 1366, 900], ['mobile', 390, 844], ['compact-mobile', 375, 667], ['landscape-mobile', 568, 320], ['small-mobile', 320, 568]]) {
     await page.setViewportSize({ width, height });
     await page.goto(siteUrl, { waitUntil: 'networkidle' });
     await page.evaluate(() => document.fonts.ready);
@@ -40,6 +40,31 @@ try {
       await page.waitForFunction(node => node.classList.contains('is-visible'), await element.elementHandle());
     }
     await page.evaluate(() => window.scrollTo(0, 0));
+    const overflowingText = await page.locator('main h1, main h2, main h3, main p, .schedule span').evaluateAll(nodes => nodes.filter(node => node.scrollWidth > node.clientWidth + 1).map(node => node.textContent));
+    assert.deepEqual(overflowingText, [], `${name}: text must fit its container`);
+    if (width < 768) {
+      await page.locator('.story-arrow').scrollIntoViewIfNeeded();
+      await page.waitForFunction(node => {
+        const book = node.getBoundingClientRect();
+        const section = node.closest('.section-inner').getBoundingClientRect();
+        return Math.abs(book.left + book.width / 2 - section.left - section.width / 2) < 1;
+      }, await page.locator('.story-arrow').elementHandle());
+      const bookCenter = await page.locator('.story-arrow').evaluate(node => {
+        const book = node.getBoundingClientRect();
+        const section = node.closest('.section-inner').getBoundingClientRect();
+        return Math.abs(book.left + book.width / 2 - section.left - section.width / 2);
+      });
+      assert.ok(bookCenter < 1, `${name}: book must be centered`);
+      for (const time of await page.locator('.schedule .time').all()) {
+        const lines = await time.evaluate(node => {
+          const range = document.createRange();
+          range.selectNodeContents(node);
+          return range.getClientRects().length;
+        });
+        assert.equal(lines, 1, `${name}: time must stay on one line`);
+      }
+      for (const section of ['story', 'venue']) await page.locator(`.${section}`).screenshot({ path: `artifacts/${section}-${name}.png` });
+    }
     const imageFailures = await page.locator('img').evaluateAll(images => images.filter(img => img.complete && img.naturalWidth === 0).map(img => img.src));
     assert.deepEqual(imageFailures, [], `${name}: broken images`);
     const svgUrls = await page.locator('svg image').evaluateAll(images => [...new Set(images.map(img => img.getAttribute('href')))]);
@@ -63,6 +88,8 @@ try {
       assert.equal(await page.evaluate(() => navigator.clipboard.readText()), await copyButton.getAttribute('data-copy'));
     }
     await page.screenshot({ path: `artifacts/bank-${name}.png` });
+    const closeBounds = await bankDialog.locator('.bank-close').boundingBox();
+    assert.ok(closeBounds.y >= 0 && closeBounds.y + closeBounds.height <= height, `${name}: close button remains visible after scrolling`);
     await page.keyboard.press('Escape');
     assert.equal(await bankDialog.isVisible(), false);
     assert.equal(await page.locator('#bank-details-open').evaluate(el => el === document.activeElement), true);

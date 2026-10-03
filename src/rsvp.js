@@ -9,8 +9,10 @@ export function installRsvp() {
   dialog.setAttribute('aria-labelledby', 'rsvp-dialog-title');
   dialog.innerHTML = `
     <div class="bank-dialog-content">
-      <button class="bank-close" type="button" aria-label="Cerrar confirmación">×</button>
-      <h2 id="rsvp-dialog-title">Confirmar asistencia</h2>
+      <header class="bank-dialog-header">
+        <button class="bank-close" type="button" aria-label="Cerrar confirmación">×</button>
+        <h2 id="rsvp-dialog-title">Confirmar asistencia</h2>
+      </header>
       <p class="rsvp-intro">Contanos quiénes van a acompañarnos. Completá una sola respuesta por pareja o familia.</p>
       <form id="rsvp-form">
         <fieldset class="rsvp-fields">
