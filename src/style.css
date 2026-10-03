@@ -22,6 +22,7 @@ h1, h2, h3, p { margin: 0; }
 h1, h2, h3, p, .button, .schedule { text-transform: uppercase; letter-spacing: .166em; }
 h1, h2 { font-weight: 400; }
 h1 { font-family: 'EB Garamond', Georgia, serif; font-size: 53.333px; line-height: 1.17; }
+#names:focus { outline: none; }
 h2 { font-family: 'EB Garamond', Georgia, serif; font-size: 53.333px; line-height: 1.17; }
 h3 { color: var(--sage); font-size: 40px; line-height: 1.17; font-weight: 700; }
 p { font-size: 26.667px; line-height: 1.17; }
@@ -173,7 +174,7 @@ body.invitation-closed { overflow: hidden; }
 }
 @media (max-width: 767px) {
   .section-inner { min-height: 0; padding: 50px clamp(16px, 5vw, 24px); }
-  h1 { font-size: clamp(30px, 7.3vw, 48px); letter-spacing: .1em; }
+  h1 { font-size: clamp(21px, 6.5vw, 40px); letter-spacing: .06em; white-space: nowrap; }
   h2 { font-size: clamp(26px, 7.5vw, 34px); letter-spacing: .07em; }
   p { font-size: clamp(16px, 4.5vw, 19px); line-height: 1.45; letter-spacing: .06em; }
   .button { font-size: clamp(18px, 5vw, 22px); width: 300px; min-height: 55px; padding: 13px 16px; letter-spacing: .07em; }
@@ -196,7 +197,7 @@ body.invitation-closed { overflow: hidden; }
   .story-arrow { position: static; width: clamp(90px, 25vw, 120px); margin: 0 auto 24px; }
   #story-collage { width: calc(100% + 8px); margin: 25px -4px 0; }
   .venue h2 { font-size: clamp(28px, 7.5vw, 34px); }
-  .schedule { margin: 28px auto 24px; font-size: clamp(15px, 4vw, 18px); letter-spacing: .045em; }
+  .schedule { display: grid; row-gap: 12px; margin: 28px auto 24px; font-size: clamp(15px, 4vw, 18px); letter-spacing: .045em; }
   .schedule li { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); min-height: 64px; }
   .schedule li span { padding: 10px clamp(8px, 2.5vw, 14px); }
   .schedule li .time { display: flex; align-items: center; justify-content: flex-end; align-self: stretch; font-size: clamp(17px, 4.5vw, 20px); white-space: nowrap; }

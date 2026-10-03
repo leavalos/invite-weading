@@ -16,7 +16,7 @@ try {
     const url = new URL(route.request().url());
     return url.origin === siteOrigin || url.protocol === 'data:' ? route.continue() : route.abort();
   });
-  for (const [name, width, height] of [['desktop', 1366, 900], ['mobile', 390, 844], ['compact-mobile', 375, 667], ['landscape-mobile', 568, 320], ['small-mobile', 320, 568]]) {
+  for (const [name, width, height] of [['desktop', 1366, 900], ['mobile', 390, 844], ['large-mobile', 402, 874], ['compact-mobile', 375, 667], ['landscape-mobile', 568, 320], ['small-mobile', 320, 568]]) {
     await page.setViewportSize({ width, height });
     await page.goto(siteUrl, { waitUntil: 'networkidle' });
     await page.evaluate(() => document.fonts.ready);
@@ -28,6 +28,7 @@ try {
     await page.getByRole('button', { name: 'Abrir invitación', exact: true }).click();
     await page.waitForFunction(() => !document.querySelector('#background-music').paused);
     assert.equal(await cover.count(), 0);
+    assert.equal(await page.locator('#names').evaluate(node => getComputedStyle(node).outlineStyle), 'none', `${name}: opening must not draw a focus border around the title`);
     await page.locator('.closing-caption').scrollIntoViewIfNeeded();
     await page.locator('.closing-photo').evaluate(img => img.decode());
     await page.evaluate(() => window.scrollTo(0, 0));
@@ -43,6 +44,14 @@ try {
     const overflowingText = await page.locator('main h1, main h2, main h3, main p, .schedule span').evaluateAll(nodes => nodes.filter(node => node.scrollWidth > node.clientWidth + 1).map(node => node.textContent));
     assert.deepEqual(overflowingText, [], `${name}: text must fit its container`);
     if (width < 768) {
+      const titleLines = await page.locator('h1').evaluate(node => {
+        const range = document.createRange();
+        range.selectNodeContents(node);
+        return range.getClientRects().length;
+      });
+      assert.equal(titleLines, 1, `${name}: names must stay on one line`);
+      const separators = await page.locator('.schedule .time').evaluateAll(nodes => nodes.map(node => ({ top: node.getBoundingClientRect().top, bottom: node.getBoundingClientRect().bottom })));
+      for (let i = 1; i < separators.length; i++) assert.ok(separators[i].top - separators[i - 1].bottom >= 10, `${name}: schedule separators need a visible gap`);
       await page.locator('.story-arrow').scrollIntoViewIfNeeded();
       await page.waitForFunction(node => {
         const book = node.getBoundingClientRect();
